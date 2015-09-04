@@ -8,34 +8,47 @@
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('.footer').sticky();
+				$('.footer').stickyFooter();
 			});
 
-			$.fn.sticky = function() {
-				var $footer = $(this);
+			;(function($) {
+				$.fn.stickyFooter = function() {
+					// support mutltiple elements
+					if (this.length > 1) {
+						this.each(function() {
+							$(this).pluginTemplate(myPluginOptions);
+						});
+					}
 
-				init();
+					var pluginInstance = this;
 
-				function init() {
-					$footer.css('height', '');
+					var $footer = $(pluginInstance);
 
-					var footerHeight = $footer.outerHeight();
+					var init = function() {
+						$(pluginInstance).css('height', '');
 
-					$('.page-wrap').css({
-						'margin-bottom': -footerHeight + 'px'
-					});
+						var footerHeight = $(pluginInstance).outerHeight();
 
-					$footer.css({
-						height: footerHeight + 'px'
-					});
+						$('.page-wrap').css({
+							'margin-bottom': -footerHeight + 'px'
+						});
 
-					$('.push').css({
-						height: footerHeight + 'px'
-					});
-				}
+						$(pluginInstance).css({
+							height: footerHeight + 'px'
+						});
 
-				$(window).on('resize', init);
-			};
+						$('.push').css({
+							height: footerHeight + 'px'
+						});
+
+						return pluginInstance;
+					}
+
+					$(window).on('resize', init);
+
+					return init();
+				};
+			})(jQuery);
 		</script>
 		<style type="text/css">
 			html, body {
@@ -47,7 +60,7 @@
 				min-height: 100%;
 			}
 
-			.content {
+			.page-wrap .content {
 				margin: 0 20px;
 				padding-top: 1px;
 				margin-bottom: 40px;
