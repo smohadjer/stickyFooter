@@ -1,2 +1,2 @@
 # stickyFooter
-Responsive sticky footer 
+Responsive sticky footer, supports IE8+, requires jQuery
