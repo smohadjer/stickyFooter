@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<title>Responsive sticky footer</title>
+        <meta name="description" content="Responsive sticky footer" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('.footer').sticky();
+			});
+
+			$.fn.sticky = function() {
+				var $footer = $(this);
+
+				init();
+
+				function init() {
+					$footer.css('height', '');
+
+					var footerHeight = $footer.outerHeight();
+
+					$('.page-wrap').css({
+						'margin-bottom': -footerHeight + 'px'
+					});
+
+					$footer.css({
+						height: footerHeight + 'px'
+					});
+
+					$('.push').css({
+						height: footerHeight + 'px'
+					});
+				}
+
+				$(window).on('resize', init);
+			};
+		</script>
+		<style type="text/css">
+			html, body {
+				height: 100%;
+				margin: 0;
+			}
+
+			.page-wrap {
+				min-height: 100%;
+			}
+
+			.content {
+				margin: 0 20px;
+				padding-top: 1px;
+				margin-bottom: 40px;
+			}
+
+			.footer {
+			  background: #ccc;
+			  padding: 20px;
+			  box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page-wrap">
+			<div class="content">
+				<h1>Responsive sticky footer (IE8+)</h1>
+				<p>Based on these solutions:</p>
+				<ul>
+					<li><a href="https://css-tricks.com/snippets/css/sticky-footer/">https://css-tricks.com/snippets/css/sticky-footer/</a></li>
+					<li><a href="http://ryanfait.com/html5-sticky-footer/">http://ryanfait.com/html5-sticky-footer/</a></li>
+				</ul>
+				<p>Lorem ipsum dolor sit amet, at at omnia filia omnes deo adoptavit cum. Dianae cui ut sua in lucem exempli paupers coniunx rex ut casus tui apparatu. Archistrate accepta illos praesens indui in deinde vero quo est amet amet Cur meae ceroma fronte comico hac auxilium tolle. Remedium quaero fraudulenta natae venit stomachi fundere quod una. Quod ait mea Stet consequat eiusdem ea rege quem acceperat utique dolorem in rei civibus in. Caelum pariter commendare Apollonius in deinde duas formis, priapum avarus ait Cumque ego dum miror puella. Post multi ingenio in fuerat accidens inquit merui. Cur meae ceroma fronte comico hac navi quia quod eam in. Archistratis continuo iacere immo post iactavit ad quia illum Apollonii illi desiderat dolor exposuisset mucrone possit caput vero rex.</p>
+			</div>
+			<div class="push"></div>
+		</div>
+		<div class="footer">
+			Lorem ipsum dolor sit amet, at at omnia filia omnes deo adoptavit cum. Dianae cui ut sua in lucem exempli paupers coniunx rex ut casus tui apparatu. Archistrate accepta illos praesens indui in deinde vero quo est amet amet Cur meae ceroma fronte comico hac auxilium tolle. Remedium quaero fraudulenta natae venit stomachi fundere quod una.
+		</div>
+	</body>
+</html>
